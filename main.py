@@ -49,6 +49,7 @@ if __name__ == '__main__':
     with open("phonebook_raw.csv", 'r', encoding='utf-8') as f:
         rows = csv.DictReader(f)
         contacts_list = list(rows)
+        fieldnames = rows.fieldnames
 
     for contact in contacts_list:
         # first = initials(contact)
@@ -59,7 +60,6 @@ if __name__ == '__main__':
     # TODO 2: сохраните получившиеся данные в другой файл
     # код для записи файла в формате CSV
     with open("phonebook.csv", "w", encoding='utf-8') as f:
-        fieldnames = ['lastname', 'firstname', 'surname', 'organization', 'position', 'phone', 'email']
         datawriter = csv.DictWriter(f, fieldnames, lineterminator='\n', extrasaction='ignore')
     # Вместо contacts_list подставьте свой список
         datawriter.writeheader()
