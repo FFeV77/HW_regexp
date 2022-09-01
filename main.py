@@ -60,7 +60,7 @@ if __name__ == '__main__':
     # код для записи файла в формате CSV
     with open("phonebook.csv", "w", encoding='utf-8') as f:
         fieldnames = ['lastname', 'firstname', 'surname', 'organization', 'position', 'phone', 'email']
-        datawriter = csv.DictWriter(f, fieldnames, lineterminator='\n')
+        datawriter = csv.DictWriter(f, fieldnames, lineterminator='\n', extrasaction='ignore')
     # Вместо contacts_list подставьте свой список
         datawriter.writeheader()
         datawriter.writerows(facebook)
