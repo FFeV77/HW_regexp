@@ -1,9 +1,11 @@
 import regex as re
 import csv
+import models
 
 # TODO 1: выполните пункты 1-3 ДЗ
 # ваш код
 
+@models.foo_logger(models.log_file)
 def phone_pattern(contact:dict):
     '''Приводит номер телефона к единому виду: +7(999)999-99-99 доб.9999'''
     pattern = r"(\+7|8)\s?\(?(\d{3})\)?[\s\-]?(\d{3})\-?(\d{2})\-?(\d{2})\s?(\(?((доб.)\s(\d+))\)?)?"
@@ -12,7 +14,7 @@ def phone_pattern(contact:dict):
     contact.update(phone = result.strip())
     return contact
 
-
+@models.foo_logger(models.log_file)
 def initials(contact:dict):
     '''Распаковывает ФИО по полям: lastname, firstname, surname'''
     text = ' '.join([contact.get('lastname'), contact.get('firstname'), contact.get('surname')])
@@ -22,7 +24,7 @@ def initials(contact:dict):
         contact.update(surname = list_initials.pop(0))
     return contact
 
-
+@models.foo_logger(models.log_file)
 def filter(contact:dict):
     '''Сравнивает записи для поиска дублей по ФИ,
         если находит совпадение - обновляет запись новыми данными
